@@ -19,3 +19,19 @@ export const createPasswordValidationSchema = yup.object().shape({
     .oneOf([yup.ref("password")], "passwords must match") // Confirms that the password matches
     .required("confirm password is required"),
 });
+
+export const signUpPhoneNumberFormValidationSchema = yup.object().shape({
+  country: yup.string().required("country is required"),
+  phone_number: yup.string().required("phone number is required"),
+});
+
+export const SignUpCreatePasswordValidationSchema = yup.object().shape({
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters"),
+  confirm_password: yup
+    .string()
+    .oneOf([yup.ref("password")], "passwords must match") // Confirms that the password matches
+    .required("confirm password is required"),
+});

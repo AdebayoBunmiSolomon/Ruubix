@@ -1,19 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-export const useCountDown = (min: number, sec: number) => {
-  const [seconds, setSeconds] = useState<number>(sec);
-  const [minutes, setMinutes] = useState<number>(min);
+export const useCountDown = (
+  initialMinutes: number,
+  initialSeconds: number
+) => {
+  const [seconds, setSeconds] = useState<number>(initialSeconds);
+  const [minutes, setMinutes] = useState<number>(initialMinutes);
+  const [key, setKey] = useState<number>(0);
+
+  const resetCountdown = useCallback(() => {
+    setMinutes(initialMinutes);
+    setSeconds(initialSeconds);
+    setKey((prev) => prev + 1);
+  }, [initialMinutes, initialSeconds]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds((prevSeconds) => {
         if (prevSeconds === 0) {
-          // If seconds reach 0, decrease minute and reset seconds
           if (minutes > 0) {
             setMinutes((prevMinutes) => prevMinutes - 1);
             return 59;
           } else {
-            clearInterval(interval); // Stop countdown when minutes reach 0
+            clearInterval(interval);
             return 0;
           }
         }
@@ -22,10 +31,7 @@ export const useCountDown = (min: number, sec: number) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [minutes]); // Re-run effect if minutes change
+  }, [key, minutes]);
 
-  return {
-    minutes,
-    seconds,
-  };
+  return { minutes, seconds, resetCountdown };
 };

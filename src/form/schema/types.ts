@@ -11,3 +11,13 @@ export type createPasswordFormTypes = {
   password: string;
   confirm_password: string;
 };
+
+export type signUpPhoneNumberFormTypes = {
+  country: string;
+  phone_number: string;
+};
+
+export type SignUpCreatePasswordFormTypes = {
+  password: string;
+  confirm_password: string;
+};

@@ -8,8 +8,8 @@ import React, { useState } from "react";
 import { StyleSheet, View, Platform } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createPasswordFormTypes } from "@src/form/schema/types";
-import { createPasswordValidationSchema } from "@src/form/validation/rules";
+import { SignUpCreatePasswordFormTypes } from "@src/form/schema/types";
+import { SignUpCreatePasswordValidationSchema } from "@src/form/validation/rules";
 import { CustomInput, CustomText } from "@src/components/shared";
 import { ScrollContainer } from "@src/screens/Scroll-Container";
 import { PasswordRequirement } from "@src/common";
@@ -19,9 +19,9 @@ import {
 } from "@src/hooks/services/useCheckPassword";
 import { CustomButton } from "@src/components/shared";
 
-export const CreatePassword = ({
+export const SignUpCreatePassword = ({
   navigation,
-}: AuthScreenProps<authScreenNames.CREATE_PASSWORD>) => {
+}: AuthScreenProps<authScreenNames.SIGN_UP_CREATE_PASSWORD>) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { passwordReqMts, checkPasswordReqMts } =
     useCheckPasswordRequirements();
@@ -29,12 +29,12 @@ export const CreatePassword = ({
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<createPasswordFormTypes>({
+  } = useForm<SignUpCreatePasswordFormTypes>({
     mode: "onChange",
-    resolver: yupResolver(createPasswordValidationSchema),
+    resolver: yupResolver(SignUpCreatePasswordValidationSchema),
   });
 
-  const onSubmit = async (data: createPasswordFormTypes) => {
+  const onSubmit = async (data: SignUpCreatePasswordFormTypes) => {
     if (data) {
       if (
         passwordReqMts.is1LowerCase &&
@@ -45,7 +45,7 @@ export const CreatePassword = ({
         setLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 2000));
         setLoading(false);
-        navigation.navigate(authScreenNames.CREATE_PASSWORD_SUCCESS);
+        navigation.navigate(authScreenNames.SIGN_UP_VERIFY_PHONE_NUMBER);
       }
     }
   };

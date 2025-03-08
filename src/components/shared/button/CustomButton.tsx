@@ -41,6 +41,7 @@ interface ICustomButtonProps {
   textPaleRed?: boolean;
   style?: StyleProp<ViewStyle>;
   textColorValue?: ColorValue;
+  disabled?: boolean;
 }
 
 export const CustomButton: React.FC<ICustomButtonProps> = ({
@@ -71,6 +72,7 @@ export const CustomButton: React.FC<ICustomButtonProps> = ({
   textPaleRed,
   style,
   textColorValue,
+  disabled,
 }) => {
   const { getTextColor } = useCustomText();
   const { getButtonColor } = useCustomButton();
@@ -107,7 +109,7 @@ export const CustomButton: React.FC<ICustomButtonProps> = ({
             },
             style,
           ]}
-          disabled={isLoading}>
+          disabled={isLoading ? true : disabled}>
           {isLoading ? (
             <Loader size='small' color={String(loaderColor)} />
           ) : (
@@ -135,7 +137,7 @@ export const CustomButton: React.FC<ICustomButtonProps> = ({
             },
             style,
           ]}
-          disabled={isLoading}>
+          disabled={isLoading ? true : disabled}>
           {isLoading ? (
             <Loader size='small' color={String(loaderColor)} />
           ) : (

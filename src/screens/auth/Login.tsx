@@ -46,7 +46,7 @@ export const Login = ({
     if (data) {
       setLoading(true);
       setTimeout(() => {
-        navigation.navigate(authScreenNames.SIGN_UP);
+        navigation.navigate(authScreenNames.SIGN_UP_PHONE_NUMBER);
       }, 3000);
       setLoading(false);
     }
@@ -66,7 +66,7 @@ export const Login = ({
       if (biometricVisible) {
         const { success } = await handleBiometricAuth();
         if (success) {
-          navigation.navigate(authScreenNames.SIGN_UP);
+          navigation.navigate(authScreenNames.SIGN_UP_PHONE_NUMBER);
         }
       }
     };
@@ -158,6 +158,9 @@ export const Login = ({
                   Don't have an account?
                 </CustomText>
                 <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(authScreenNames.SIGN_UP_PHONE_NUMBER)
+                  }
                   style={{
                     paddingVertical: moderateScale(5),
                   }}>

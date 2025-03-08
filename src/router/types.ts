@@ -6,13 +6,16 @@ import { type BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 export interface AuthStackParamList extends ParamListBase {
   Onboarding: undefined;
   Login: undefined;
-  SignUp: undefined;
   PhoneNumber: undefined;
   VerifyPhoneNumber: {
     phone_number: string;
   };
   CreatePassword: undefined;
   CreatePasswordSuccess: undefined;
+  SignUpPhoneNumber: undefined;
+  SignUpCreatePassword: undefined;
+  SignUpVerifyPhoneNumber: undefined;
+  CreateAccount: undefined;
 }
 
 export type AuthScreenProps<ScreenName extends keyof AuthStackParamList> =

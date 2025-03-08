@@ -85,7 +85,9 @@ export const Onboarding = ({
           title='Create an account'
           textType='nunito-semibold'
           textSize={16}
-          onPress={() => {}}
+          onPress={() =>
+            navigation.navigate(authScreenNames.SIGN_UP_PHONE_NUMBER)
+          }
           buttonType='Solid'
           bgBlack
           textWhite
