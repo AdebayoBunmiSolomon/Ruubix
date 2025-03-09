@@ -71,7 +71,7 @@ export const SignUpVerifyPhoneNumber = ({
         </View>
         <View style={styles.actionBtn}>
           <CustomButton
-            title='Continue'
+            title='Verify'
             textType='nunito-semibold'
             textSize={16}
             onPress={async () => {

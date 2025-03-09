@@ -45,12 +45,12 @@ export const AppHeader: React.FC<IAppHeaderProps> = ({
         )}
       </View>
       <View style={styles.progressBarContainer}>
-        <CustomText type='nunito-extrabold' size={28} black>
+        <CustomText type='nunito-extrabold' size={27} black>
           {title}
         </CustomText>
         {showProgress && (
           <AnimatedCircularProgress
-            size={moderateScale(35)}
+            size={moderateScale(40)}
             width={moderateScale(6)}
             fill={progress}
             tintColor={colors.black}
@@ -59,8 +59,8 @@ export const AppHeader: React.FC<IAppHeaderProps> = ({
             lineCap='round'>
             {(_) => (
               <CustomText
-                type='nunito-semibold'
-                size={10}
+                type='nunito-extrabold'
+                size={12}
                 black
                 style={{
                   textAlign: "center",
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     padding: moderateScale(0),
   },
   getHelpBtn: {
-    paddingVertical: moderateScale(10),
-    paddingHorizontal: moderateScale(15),
+    paddingVertical: moderateScale(7),
+    paddingHorizontal: moderateScale(10),
     backgroundColor: colors.paleRed,
     borderRadius: moderateScale(31),
   },
@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
   progressBarContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    gap: moderateScale(20),
   },
 });

@@ -21,8 +21,8 @@ export const useCustomInput = () => {
       };
     } else {
       return {
-        borderColor: colors.darkGrey,
-        iconColor: colors.darkGrey,
+        borderColor: "#d3cacaf5",
+        iconColor: colors.black,
       };
     }
   };

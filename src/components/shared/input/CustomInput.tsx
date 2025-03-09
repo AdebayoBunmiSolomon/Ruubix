@@ -36,6 +36,7 @@ interface BaseProps {
   style?: StyleProp<ViewStyle>;
   valueFontType?: textType;
   titleStyle?: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   onSubmitEditing?: () => void;
 }
 
@@ -74,6 +75,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
     style,
     valueFontType,
     titleStyle,
+    inputStyle,
     onSubmitEditing,
   } = props;
 
@@ -142,6 +144,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
                 height: "100%",
                 fontFamily: renderValueFontType(),
               },
+              inputStyle,
             ]}
             placeholderTextColor={colors.darkGrey}
             onChangeText={onChangeText}
@@ -228,6 +231,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
               height: "100%",
               fontFamily: renderValueFontType(),
             },
+            inputStyle,
           ]}
           secureTextEntry={seePassword}
           placeholderTextColor={colors.darkGrey}
@@ -283,6 +287,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
                 textAlignVertical: multiLine ? "top" : "center",
                 fontFamily: renderValueFontType(),
               },
+              inputStyle,
             ]}
             keyboardType={keyboardType}
             placeholderTextColor={colors.darkGrey}

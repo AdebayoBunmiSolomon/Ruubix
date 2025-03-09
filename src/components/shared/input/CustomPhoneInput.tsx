@@ -67,6 +67,7 @@ export const CustomPhoneInput: React.FC<ICustomPhoneInputProps> = ({
             placeholder: "Enter your phone number",
             placeholderTextColor: colors.darkGrey,
           }}
+          initialValue={value}
         />
       </View>
       {showErrorText && error && (

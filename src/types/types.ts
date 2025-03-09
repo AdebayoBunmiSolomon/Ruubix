@@ -25,3 +25,7 @@ export type onboardingSlidesType = {
   description: string;
   image: ImageSourcePropType;
 }[];
+
+export type formStepperType = {
+  useFormProps: any;
+};

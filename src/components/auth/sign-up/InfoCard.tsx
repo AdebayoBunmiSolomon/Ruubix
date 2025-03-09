@@ -13,10 +13,10 @@ export const InfoCard: React.FC<IInfoCardProps> = ({ text }) => {
   return (
     <View style={styles.container}>
       <OctagonAlert color={colors.black} size={moderateScale(15)} />
-      <CustomText type='nunito-regular' size={12} black>
+      <CustomText type='nunito-semibold' size={11} black>
         <CustomText type='nunito-bold' size={12} black>
           {text.split(":")[0]}:
-        </CustomText>{" "}
+        </CustomText>
         {text.split(":")[1]}
       </CustomText>
     </View>
@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     backgroundColor: colors.paleRed,
     borderRadius: moderateScale(10),
+    width: "101%",
+    overflow: "hidden",
     paddingVertical: moderateScale(10),
     paddingHorizontal: moderateScale(10),
     gap: moderateScale(6),
