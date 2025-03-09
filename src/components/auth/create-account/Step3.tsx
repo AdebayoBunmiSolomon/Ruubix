@@ -1,8 +1,10 @@
 import { UploadButton } from "@src/components/shared";
+import { useMedia } from "@src/hooks/services";
 import { formStepperType } from "@src/types/types";
 import React from "react";
 
 export const Step3: React.FC<formStepperType> = ({ useFormProps }) => {
+  const { openCamera, openGallery } = useMedia();
   const props = useFormProps;
   return (
     <>
@@ -12,7 +14,15 @@ export const Step3: React.FC<formStepperType> = ({ useFormProps }) => {
         btnDesc={
           "A passport, drivers license, or any other government-\nissued ID"
         }
-        upload={() => {}}
+        upload={async () => {
+          const result = await openGallery();
+          if (result) {
+            props?.setValue("proof_of_identity", String(result?.uri));
+            props?.clearErrors("proof_of_identity");
+          }
+        }}
+        showErrorText
+        error={props?.errors?.proof_of_identity?.message}
       />
 
       <UploadButton
@@ -21,7 +31,15 @@ export const Step3: React.FC<formStepperType> = ({ useFormProps }) => {
         btnDesc={
           "A utility bill, rent bill, tax bill, mortgage statement, or\nother official document"
         }
-        upload={() => {}}
+        upload={async () => {
+          const result = await openGallery();
+          if (result) {
+            props?.setValue("proof_of_address", String(result?.uri));
+            props?.clearErrors("proof_of_address");
+          }
+        }}
+        showErrorText
+        error={props?.errors?.proof_of_address?.message}
       />
 
       <UploadButton
@@ -31,7 +49,15 @@ export const Step3: React.FC<formStepperType> = ({ useFormProps }) => {
           "Take a selfie to verify your identity, Position your face\nwithin the photo frame to take a shot"
         }
         btnIconSrc={require("@src/assets/png/Camera.png")}
-        upload={() => {}}
+        upload={async () => {
+          const result = await openCamera();
+          if (result) {
+            props?.setValue("face_verification", String(result?.uri));
+            props?.clearErrors("face_verification");
+          }
+        }}
+        showErrorText
+        error={props?.errors?.face_verification?.message}
       />
     </>
   );

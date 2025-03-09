@@ -16,6 +16,8 @@ export interface AuthStackParamList extends ParamListBase {
   SignUpCreatePassword: undefined;
   SignUpVerifyPhoneNumber: undefined;
   CreateAccount: undefined;
+  CreateAccountSuccess: undefined;
+  SetUpPin: undefined;
 }
 
 export type AuthScreenProps<ScreenName extends keyof AuthStackParamList> =

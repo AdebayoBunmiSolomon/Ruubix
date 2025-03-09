@@ -9,6 +9,8 @@ export enum authScreenNames {
   SIGN_UP_CREATE_PASSWORD = "SignUpCreatePassword",
   SIGN_UP_VERIFY_PHONE_NUMBER = "SignUpVerifyPhoneNumber",
   CREATE_ACCOUNT = "CreateAccount",
+  CREATE_ACCOUNT_SUCCESS = "CreateAccountSuccess",
+  SET_UP_PIN = "SetUpPin",
 }
 
 export enum appScreenNames {

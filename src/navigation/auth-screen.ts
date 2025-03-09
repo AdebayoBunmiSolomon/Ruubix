@@ -9,6 +9,8 @@ import {
 } from "@src/screens/auth/forgot-password";
 import {
   CreateAccount,
+  CreateAccountSuccess,
+  SetUpPin,
   SignUpCreatePassword,
   SignUpPhoneNumber,
   SignUpVerifyPhoneNumber,
@@ -54,5 +56,13 @@ export const authScreen: authScreenTypes[] = [
   {
     screenName: authScreenNames.CREATE_ACCOUNT,
     component: CreateAccount,
+  },
+  {
+    screenName: authScreenNames.CREATE_ACCOUNT_SUCCESS,
+    component: CreateAccountSuccess,
+  },
+  {
+    screenName: authScreenNames.SET_UP_PIN,
+    component: SetUpPin,
   },
 ];

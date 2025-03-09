@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { CustomText } from "../text/CustomText";
 import { DVH, DVW, moderateScale } from "@src/resources/scaling";
+import { colors } from "@src/resources/colors/colors";
 
 interface IUploadButtonProps {
   title: string;
@@ -15,6 +16,8 @@ interface IUploadButtonProps {
   btnDesc: string;
   btnIconSrc?: ImageSourcePropType;
   upload: () => void;
+  showErrorText?: boolean;
+  error?: string;
 }
 
 export const UploadButton: React.FC<IUploadButtonProps> = ({
@@ -23,6 +26,8 @@ export const UploadButton: React.FC<IUploadButtonProps> = ({
   btnDesc,
   btnIconSrc,
   upload,
+  showErrorText,
+  error,
 }) => {
   return (
     <View style={styles.container}>
@@ -53,6 +58,11 @@ export const UploadButton: React.FC<IUploadButtonProps> = ({
           />
         </View>
       </TouchableOpacity>
+      {showErrorText && error ? (
+        <CustomText size={12} type='nunito-regular' style={styles.errorText}>
+          {error}
+        </CustomText>
+      ) : null}
     </View>
   );
 };
@@ -73,5 +83,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingBottom: moderateScale(5),
+  },
+  errorText: {
+    marginBottom: moderateScale(5),
+    color: colors.danger,
   },
 });

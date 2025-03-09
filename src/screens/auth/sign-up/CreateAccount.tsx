@@ -79,7 +79,7 @@ export const CreateAccount = ({
     } else if (currStep === 3) {
       isValid = await step3FormTrigger();
       if (isValid) {
-        //proceed to submit form
+        navigation.navigate(authScreenNames.CREATE_ACCOUNT_SUCCESS);
       }
     }
   };
@@ -104,10 +104,10 @@ export const CreateAccount = ({
     />,
     <Step3
       useFormProps={{
-        control: step2FormControl,
-        errors: step2FormErrors,
-        setValue: step2FormSetValue,
-        clearErrors: step2FormClearError,
+        control: step3FormControl,
+        errors: step3FormErrors,
+        setValue: step3FormSetValue,
+        clearErrors: step3FormClearError,
       }}
     />,
   ];
