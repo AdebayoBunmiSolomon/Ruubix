@@ -10,7 +10,7 @@ type uploadedFiles = {
 };
 
 export const Step3: React.FC<formStepperType> = ({ useFormProps }) => {
-  const { openCamera, openGallery } = useMedia();
+  const { openCamera, openGallery, pickDocument } = useMedia();
   const [uploadedFile, setUploadedFile] = useState<uploadedFiles>({
     proof_of_address: undefined,
     proof_of_identity: undefined,
@@ -26,7 +26,7 @@ export const Step3: React.FC<formStepperType> = ({ useFormProps }) => {
           "A passport, drivers license, or any other government-\nissued ID"
         }
         upload={async () => {
-          const result = await openGallery();
+          const result = await pickDocument();
           if (result) {
             props?.setValue("proof_of_identity", String(result?.uri));
             props?.clearErrors("proof_of_identity");

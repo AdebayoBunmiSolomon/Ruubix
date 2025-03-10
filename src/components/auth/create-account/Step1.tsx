@@ -195,7 +195,7 @@ export const Step1: React.FC<formStepperType> = ({ useFormProps }) => {
                   titleColor={colors.black}
                   value={field.value}
                   onChangeText={(text) => field.onChange(text)}
-                  placeholder='YYY'
+                  placeholder='YYYY'
                   type='custom'
                   showErrorText
                   error={props?.errors?.year?.message}
