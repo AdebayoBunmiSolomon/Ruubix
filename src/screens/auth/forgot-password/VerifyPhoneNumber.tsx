@@ -9,15 +9,19 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Platform, TouchableOpacity } from "react-native";
 import { CustomButton, CustomText } from "@src/components/shared";
 import { useCountDown } from "@src/hooks/services";
+import { useEnteredPhoneNumberStore } from "@src/hooks/store";
+import { maskPhoneNumber } from "@src/helper/helper";
 
 export const VerifyPhoneNumber = ({
   navigation,
-  route,
 }: AuthScreenProps<authScreenNames.VERIFY_PHONE_NUMBER>) => {
-  const { phone_number } = route?.params;
+  const { enteredPhoneNumber } = useEnteredPhoneNumberStore();
   const [otpValue, setOtpValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { minutes, seconds } = useCountDown(2, 60);
+  const phoneNumber = `${enteredPhoneNumber.dial_code}${" "}${
+    enteredPhoneNumber.number
+  }`;
 
   useEffect(() => {
     const initiateVerify = async () => {
@@ -36,7 +40,9 @@ export const VerifyPhoneNumber = ({
     <Screen style={styles.screen}>
       <AppHeader
         title="We've sent you a code"
-        description={`Enter the 6-digit code sent to ${phone_number}`}
+        description={`Enter the 6-digit code sent to ${maskPhoneNumber(
+          phoneNumber
+        )}`}
         onPressArrowBack={() => navigation.goBack()}
       />
       <KeyboardDismissal>

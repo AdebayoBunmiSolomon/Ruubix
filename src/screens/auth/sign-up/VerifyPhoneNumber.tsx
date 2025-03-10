@@ -10,6 +10,7 @@ import { StyleSheet, View, Platform, TouchableOpacity } from "react-native";
 import { CustomButton, CustomText } from "@src/components/shared";
 import { useCountDown } from "@src/hooks/services";
 import { useEnteredPhoneNumberStore } from "@src/hooks/store";
+import { maskPhoneNumber } from "@src/helper/helper";
 
 export const SignUpVerifyPhoneNumber = ({
   navigation,
@@ -18,6 +19,9 @@ export const SignUpVerifyPhoneNumber = ({
   const [otpValue, setOtpValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { minutes, seconds, resetCountdown } = useCountDown(2, 60);
+  const phoneNumber = `${enteredPhoneNumber.dial_code}${" "}${
+    enteredPhoneNumber.number
+  }`;
 
   useEffect(() => {
     const initiateVerify = async () => {
@@ -36,8 +40,11 @@ export const SignUpVerifyPhoneNumber = ({
     <Screen style={styles.screen}>
       <AppHeader
         title='Confirm your phone number'
-        description={`Enter the 6-digit code sent to ${enteredPhoneNumber}`}
+        description={`Enter the 6-digit code sent to ${maskPhoneNumber(
+          phoneNumber
+        )}`}
         onPressArrowBack={() => navigation.goBack()}
+        showGetHelp
       />
       <KeyboardDismissal>
         <OTPInput

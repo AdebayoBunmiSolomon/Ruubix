@@ -7,9 +7,7 @@ export interface AuthStackParamList extends ParamListBase {
   Onboarding: undefined;
   Login: undefined;
   PhoneNumber: undefined;
-  VerifyPhoneNumber: {
-    phone_number: string;
-  };
+  VerifyPhoneNumber: undefined;
   CreatePassword: undefined;
   CreatePasswordSuccess: undefined;
   SignUpPhoneNumber: undefined;

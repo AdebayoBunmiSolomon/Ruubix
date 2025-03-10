@@ -7,18 +7,20 @@ import { useEnteredPhoneNumberStore } from "@src/hooks/store";
 import { colors } from "@src/resources/colors/colors";
 import { moderateScale } from "@src/resources/scaling";
 import { formStepperType } from "@src/types/types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 
 export const Step1: React.FC<formStepperType> = ({ useFormProps }) => {
   const { enteredPhoneNumber } = useEnteredPhoneNumberStore();
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
   const props = useFormProps;
+  const phoneNumberDisabled = true;
 
   useEffect(() => {
-    props?.setValue("phone_number", enteredPhoneNumber);
-    setPhoneNumber(enteredPhoneNumber);
+    props?.setValue(
+      "phone_number",
+      `${enteredPhoneNumber.dial_code}${enteredPhoneNumber.number}`
+    );
   }, []);
   return (
     <>
@@ -83,21 +85,32 @@ export const Step1: React.FC<formStepperType> = ({ useFormProps }) => {
       />
 
       <CustomPhoneInput
-        value={phoneNumber}
+        value={enteredPhoneNumber.number}
         titleColor={colors.black}
+        dial_code={enteredPhoneNumber.dial_code}
+        flag={enteredPhoneNumber.flag}
         title='Enter your phone number'
-        titleType='nunito-bold'
-        onChangeText={(value) => {}}
-        style={styles.input}
+        titleType='nunito-semibold'
+        onChangeText={(value) => {
+          console.log(value);
+        }}
+        placeholder='Enter your phone number'
+        style={[
+          styles.input,
+          {
+            backgroundColor: phoneNumberDisabled && "#F1F1F1",
+          },
+        ]}
         showErrorText
         error={props?.errors?.phone_number?.message}
+        disabled={phoneNumberDisabled}
       />
 
       <Controller
         control={props?.control}
         render={({ field }) => (
           <CustomInput
-            title='Email address'
+            title='Gender'
             titleType='nunito-bold'
             titleColor={colors.black}
             value={field.value}

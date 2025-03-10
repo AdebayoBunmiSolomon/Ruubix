@@ -8,6 +8,7 @@ import { DVH, DVW, moderateScale } from "@src/resources/scaling";
 import { AppHeader, OTPInput } from "@src/common";
 import { CustomButton, CustomText } from "@src/components/shared";
 import { InfoCard } from "@src/components/auth/sign-up";
+import { ScrollContainer } from "@src/screens/Scroll-Container";
 
 export const SetUpPin = ({
   navigation,
@@ -36,61 +37,68 @@ export const SetUpPin = ({
         onPressArrowBack={() => navigation.goBack()}
         showGetHelp
       />
-      <InfoCard
-        text={
-          "Identification: Kindly upload all required document to\nto complete your account set up"
-        }
-      />
-      <View style={styles.otpContainer}>
-        <CustomText
-          type='nunito-regular'
-          size={16}
-          style={{
-            color: "#54534A",
-          }}>
-          Enter a 4-digit pin
-        </CustomText>
-        <OTPInput
-          numberOfInput={4}
-          onComplete={(otp) => setOtpValue1(otp)}
-          inputStyle={styles.otp}
-          containerStyle={styles.otpContainerStyle}
-        />
-      </View>
-
-      <View style={styles.otpContainer}>
-        <CustomText
-          type='nunito-regular'
-          size={16}
-          style={{
-            color: "#54534A",
-          }}>
-          Confirm 4-digit pin
-        </CustomText>
-        <OTPInput
-          numberOfInput={4}
-          onComplete={(otp) => setOtpValue2(otp)}
-          inputStyle={styles.otp}
-          containerStyle={styles.otpContainerStyle}
-        />
-      </View>
-
-      <CustomButton
-        title='Continue to Dashboard'
-        textType='nunito-semibold'
-        textSize={16}
-        onPress={async () => await verifyPin()}
-        buttonType='Solid'
-        bgBlack
-        textWhite
+      <View
         style={{
-          marginTop: moderateScale(40),
-          paddingVertical: moderateScale(15),
-          width: "100%",
-        }}
-        isLoading={loading}
-        loaderColor={colors.white}
-      />
+          flex: 1,
+        }}>
+        <ScrollContainer>
+          <InfoCard
+            text={
+              "Identification: Kindly upload all required document to\nto complete your account set up"
+            }
+          />
+          <View style={styles.otpContainer}>
+            <CustomText
+              type='nunito-regular'
+              size={16}
+              style={{
+                color: "#54534A",
+              }}>
+              Enter a 4-digit pin
+            </CustomText>
+            <OTPInput
+              numberOfInput={4}
+              onComplete={(otp) => setOtpValue1(otp)}
+              inputStyle={styles.otp}
+              containerStyle={styles.otpContainerStyle}
+            />
+          </View>
+
+          <View style={styles.otpContainer}>
+            <CustomText
+              type='nunito-regular'
+              size={16}
+              style={{
+                color: "#54534A",
+              }}>
+              Confirm 4-digit pin
+            </CustomText>
+            <OTPInput
+              numberOfInput={4}
+              onComplete={(otp) => setOtpValue2(otp)}
+              inputStyle={styles.otp}
+              containerStyle={styles.otpContainerStyle}
+            />
+          </View>
+
+          <CustomButton
+            title='Continue to Dashboard'
+            textType='nunito-semibold'
+            textSize={16}
+            onPress={async () => await verifyPin()}
+            buttonType='Solid'
+            bgBlack
+            textWhite
+            style={{
+              marginTop: moderateScale(40),
+              paddingVertical: moderateScale(15),
+              width: "100%",
+            }}
+            isLoading={loading}
+            loaderColor={colors.white}
+          />
+        </ScrollContainer>
+      </View>
     </Screen>
   );
 };

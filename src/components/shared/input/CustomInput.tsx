@@ -389,5 +389,6 @@ const styles = StyleSheet.create({
   closeButton: {
     marginTop: moderateScale(10),
     alignSelf: "center",
+    padding: moderateScale(5),
   },
 });

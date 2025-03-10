@@ -54,8 +54,9 @@ export const PhoneNumber = ({
                 value={field.value}
                 titleColor={colors.black}
                 title='Enter your phone number'
-                titleType='nunito-regular'
+                titleType='nunito-semibold'
                 onChangeText={(value) => field.onChange(value)}
+                placeholder='Enter your phone number'
                 style={styles.input}
                 showErrorText
                 error={errors?.phone_number?.message}

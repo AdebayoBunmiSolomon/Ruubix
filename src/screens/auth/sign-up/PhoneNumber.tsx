@@ -12,7 +12,6 @@ import { signUpPhoneNumberFormTypes } from "@src/form/schema/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpPhoneNumberFormValidationSchema } from "@src/form/validation/rules";
 import { maskPhoneNumber } from "@src/helper/helper";
-import { KeyboardDismissal } from "@src/screens/Keyboard-Dismissal";
 import {
   CustomButton,
   CustomInput,
@@ -21,7 +20,6 @@ import {
 } from "@src/components/shared";
 import { countries } from "@src/constants/countries";
 import { ScrollContainer } from "@src/screens/Scroll-Container";
-import { useEnteredPhoneNumberStore } from "@src/hooks/store";
 
 type FormTypes = {
   country: string;
@@ -31,7 +29,6 @@ type FormTypes = {
 export const SignUpPhoneNumber = ({
   navigation,
 }: AuthScreenProps<authScreenNames.SIGN_UP_PHONE_NUMBER>) => {
-  const { setEnteredPhoneNumber } = useEnteredPhoneNumberStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [frmValues, setFrmValues] = useState<FormTypes>({
     country: "",
@@ -51,7 +48,6 @@ export const SignUpPhoneNumber = ({
       setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setLoading(false);
-      setEnteredPhoneNumber(maskPhoneNumber(data?.phone_number));
       navigation.navigate(authScreenNames.SIGN_UP_CREATE_PASSWORD, {
         phone_number: maskPhoneNumber(data.phone_number),
       });
@@ -112,6 +108,7 @@ export const SignUpPhoneNumber = ({
                   phoneNumber: value,
                 });
               }}
+              placeholder='Enter your phone number'
               style={styles.input}
               showErrorText
               error={errors?.phone_number?.message}

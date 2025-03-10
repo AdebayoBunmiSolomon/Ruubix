@@ -15,6 +15,7 @@ interface IUploadButtonProps {
   btnTitle: string;
   btnDesc: string;
   btnIconSrc?: ImageSourcePropType;
+  uploadedImg?: ImageSourcePropType;
   upload: () => void;
   showErrorText?: boolean;
   error?: string;
@@ -25,6 +26,7 @@ export const UploadButton: React.FC<IUploadButtonProps> = ({
   btnTitle,
   btnDesc,
   btnIconSrc,
+  uploadedImg,
   upload,
   showErrorText,
   error,
@@ -48,7 +50,11 @@ export const UploadButton: React.FC<IUploadButtonProps> = ({
             {btnDesc}
           </CustomText>
           <Image
-            source={btnIconSrc || require("@src/assets/png/Upload.png")}
+            source={
+              uploadedImg
+                ? { uri: uploadedImg }
+                : btnIconSrc || require("@src/assets/png/Upload.png")
+            }
             style={{
               width: DVW(7),
               height: DVH(3.5),
